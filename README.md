@@ -1,4 +1,4 @@
-# 🌸 Flowers - Front-End Flower Store
+# 🌸 Flowers 
 
 A beautiful front-end flower store built using **HTML**, **CSS**, and **JavaScript** where users can explore and purchase fresh flowers for any occasion.
 
