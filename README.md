@@ -13,4 +13,4 @@ A beautiful front-end flower store built using **HTML**, **CSS**, and **JavaScri
 ## 📦 Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/flowers.git
+   git clone https://github.com/esraa2850/flowers.git
