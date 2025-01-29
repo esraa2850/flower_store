@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flowers Store</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/stylecs.css">
+  <link rel="icon" href="img/contact2.webp">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&#038;display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#home">Flowers</a>
+
+      <!-- Navbar toggle button for mobile view -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Centered navbar-collapse -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#review">Review</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="icons">
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart" data-bs-toggle="modal" data-bs-target="#flowerCartModal"></a>
+        <a href="#" id="sing_up" class="fas fa-user" data-bs-toggle="modal" data-bs-target="#authModal"
+          onclick="document.getElementById('signInForm').style.display = 'none'; document.getElementById('signUpForm').style.display = 'block';">Sign
+          Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="authModalLabel">Sign In / Sign Up</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Sign In Form -->
+          <div id="signInForm">
+            <form id="signIn">
+              <div class="mb-3">
+                <label for="signInEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signInEmail" placeholder="Enter email" required>
+              </div>
+              <div class="mb-3">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signInPassword" placeholder="Enter password" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Sign In</button>
+              <div class="mt-3 text-center">
+                <button type="button" class="btn btn-link" id="showSignUp"
+                  onclick="document.getElementById('signInForm').style.display = 'none'; document.getElementById('signUpForm').style.display = 'block';">Don't
+                  have an account? Sign Up</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Sign Up Form -->
+          <div id="signUpForm" style="display: none;">
+            <form id="signUp">
+              <div class="mb-3">
+                <label for="signUpname" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="signUpname" placeholder="Enter your name" required>
+              </div>
+              <div class="mb-3">
+                <label for="signUpEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="signUpEmail" placeholder="Enter email" required>
+              </div>
+              <div class="mb-3">
+                <label for="signUpPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signUpPassword" placeholder="Create password" required>
+              </div>
+              <div class="mb-3">
+                <label for="signUpConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="signUpConfirmPassword" placeholder="Confirm password"
+                  required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+              <div class="mt-3 text-center">
+                <button type="button" class="btn btn-link" id="showSignIn"
+                  onclick="document.getElementById('signUpForm').style.display = 'none'; document.getElementById('signInForm').style.display = 'block';">Already
+                  have an account? Sign In</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!--   flower cart -->
+  <div class="modal fade" id="flowerCartModal" tabindex="-1" aria-labelledby="flowerCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="flowerCartModalLabel">Flower Cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="cart-test">
+            <div class="add-item">
+              <h2>Add a Flower</h2>
+              <label for="flower-name">Flower Name:</label>
+              <input type="text" id="flower-name" placeholder="Enter flower name">
+
+              <label for="flower-quantity">Quantity:</label>
+              <input type="number" id="flower-quantity" placeholder="Enter quantity" min="1">
+
+              <label for="flower-price">Price per Flower:</label>
+              <input type="text" id="flower-price" placeholder="Enter price">
+
+              <button class="add-btn">Add to Cart</button>
+            </div>
+
+            <div class="cart-items mt-4">
+              <h2>Cart Items</h2>
+              <p>No items added yet.</p>
+            </div>
+
+            <div class="total-test mt-4">
+              <p>Total Price: $0</p>
+              <button class="checkout-btn btn btn-primary">Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--                           home section                   -->
+
+  <section class="container-fluid" id="home">
+
+    <div class="col-md-6 justify-content-center p-5">
+      <div class="pla w-100">
+        <h2>Fresh Flowers</h2>
+        <h3>natural & beautiful flowers</h3>
+        <p class="justify-content-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae laborum ut
+          minus corrupti dolorum dolore assumenda iste voluptate dolorem pariatur.</p>
+        <!-- <button class="bg-black rounded-4 border-0 px-4 py-1 text-light" href="#products">Shop Now</button> -->
+        <a class="bg-black rounded-4 border-0 px-4 py-1 text-light" href="#products">Shop Now</a>
+      </div>
+    </div>
+  </section>
+  <!--                           about section                   -->
+
+  <section id="about" class="about">
+    <h2 class="d-flex justify-content-center m-5 header">About Us</h2>
+    <div class="container ">
+      <div class="row d-flex justify-content-center">
+
+        <div class="col-md-6 position-relative mx-0 my-3">
+          <div class="video-container">
+            <video
+              src="img/hand-of-woman-tenderly-stroking-purple-flowers-while-walking-on-summer-lavende-SBV-347429137-preview (1).mp4"
+              loop autoplay muted></video>
+            <h4>best flower sellers</h4>
+          </div>
+        </div>
+
+        <div class="col-md-5 mx-5 my-5">
+          <div class="content">
+            <h3>Why Choose Us?</h3>
+            <p class="text-muted ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem cumque sit nemo
+              pariatur corporis perspiciatis aspernatur a ullam repudiandae autem asperiores quibusdam omnis commodi
+              alias repellat illum, unde optio temporibus.</p>
+            <p class="text-muted ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem cumque sit nemo
+              pariatur corporis perspiciatis aspernatur a ullam repudiandae autem asperiores quibusdam omnis commodi
+              alias repellat illum, unde optio temporibus.</p>
+            <button class="bg-black rounded-4 border-0 px-4 py-1 text-light">Learn more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid bg-body-secondary  my-4 p-5">
+      <div>
+        <div class="row ">
+          <div class="col-md-3">
+            <div class="container p-3 bg-white rounded-1">
+              <div class="row">
+                <div class="col-md-4">
+                  <img class="w-75" src="img/icon-2.png">
+                </div>
+                <div class="col-md-8">
+                  <h5>10 Days Returns</h5>
+                  <h6 class="text-muted">moneyback guarantee</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="container p-3 bg-white rounded-1">
+              <div class="row">
+                <div class="col-md-4">
+                  <img class="w-75" src="img/icon-3.png">
+                </div>
+                <div class="col-md-8">
+                  <h5>Offers & Gifts</h5>
+                  <h6 class="text-muted">On All Orders</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="container p-3 bg-white rounded-1">
+              <div class="row">
+                <div class="col-md-4">
+                  <img class="w-75" src="img/icon-4.png">
+                </div>
+                <div class="col-md-8">
+                  <h5>Secure Paymens</h5>
+                  <h6 class="text-muted">protected by paypal</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 p-3 bg-white rounded-1">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <img class="w-75" src="img/icon-1.png">
+                </div>
+                <div class="col-md-8">
+                  <h5>Free Delivery</h5>
+                  <h6 class="text-muted">On All Orders</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </section>
+  <!--                           products section                   -->
+
+
+  <section id="products">
+    <h2 class="d-flex justify-content-center m-5 header">Products</h2>
+
+    <div class="container m-5"></div>
+    <div class="row m-5 justify-content-center">
+      <div class="col-md-4">
+        <div class="card text-center   mb-4">
+          <div class="discount-badge">-5%</div>
+          <img src="img/img-1.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex  justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4   mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-15%</div>
+          <img src="img/img-2.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4   mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-9%</div>
+          <img src="img/img-3.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img-4.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img-5.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between btn-pink actions mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img-6.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between btn-pink actions">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img-7.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between  btn-pink actions mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img-8.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img-9.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn"><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section id="products">
+    <!-- <h2 class="d-flex justify-content-center m-5 header">latest products</h2> -->
+
+    <div class="container m-5"></div>
+    <div class="row m-5 justify-content-center">
+      <div class="col-md-4">
+        <div class="card text-center   mb-4">
+          <div class="discount-badge">-5%</div>
+          <img src="img/img18.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex  justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4   mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-20%</div>
+          <img src="img/img17.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4   mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-9%</div>
+          <img src="img/img16.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img111.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img14.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between btn-pink actions mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img211.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between btn-pink actions">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img12.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between  btn-pink actions mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img222.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn  "><i class="fa-solid fa-share"></i></button>
+
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4  mb-4">
+        <div class="card text-center">
+          <div class="discount-badge">-10%</div>
+          <img src="img/img10.jpg" class="card-img-top" alt="Flower Pot">
+          <div class="card-body">
+            <div class="d-flex justify-content-between actions btn-pink mb-2">
+              <button class="btn "><i class="fa-regular fa-heart"></i></button>
+              <button class="btn ">Add To Cart</button>
+              <button class="btn"><i class="fa-solid fa-share"></i></button>
+            </div>
+            <h5 class="card-title">Flower Pot</h5>
+            <p>
+              <span class="price">$12.99</span>
+              <span class="old-price">$15.99</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!--                          reveiw section                   -->
+
+  <section id="rewiew">
+    <h2 class="d-flex justify-content-center m-5 header">customer's review</h2>
+
+    <div class="container">
+      <div class="row d-flex justify-content-between">
+        <div class="col-md-4 box ">
+          <div class="stars">
+            <br>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <br>
+          <p class="text-muted">Lorem delens aliquam enim deleniti sunt minus, qui provident rem, a voluptatum?
+            Voluptates quisquam ea a autem nisi, neque iure dignissimos omnis ad ratione tempora expedita reiciendis
+            repellendus sit voluptatum animi ipsum architecto quidem temporibus consequatur est amet assumenda itaque
+            nam! Odio dolor eum dignissimos, doloribus aperiam aut dolorum.</p>
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-2 p-0 m-0 ">
+                <img src="img/pic-1.png" class="w-100 rounded-circle" alt="customer">
+              </div>
+              <div class="col-md-5">
+                <h5 class="cust">John Deo</h5>
+                <h6 class="text-muted">happy customer</h6>
+              </div>
+              <div class="col-md-1">
+                <i class="qoute fa-solid fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 box ">
+          <br>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <br>
+          <p class="text-muted">Lorem deleniti quae sed quia ut,eius aliquam enim deleniti sunt minus, qui provident
+            rem, a voluptatum? Voluptates quisquam ea a autem nisi, neque iure dignissimos omnis ad ratione tempora
+            expedita reiciendis repellendus sit voluptatum animi ipsum architecto quidem temporibus consequatur est amet
+            assumenda itaque nam! Odio dolor eum dignissimos, doloribus aperiam aut dolorum.</p>
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-2 p-0 m-0 ">
+                <img src="img/pic-2.png" class="w-100 rounded-circle" alt="customer">
+              </div>
+              <div class="col-md-5">
+                <h5 class="cust">John Deo</h5>
+                <h6 class="text-muted">happy customer</h6>
+              </div>
+              <div class="col-md-1">
+                <i class="qoute fa-solid fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 box ">
+          <br>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <br>
+          <p class="text-muted">Lorem deleniti quae sed quia ut,eius aliquam enim deleniti sunt minus, qui provident
+            rem, a voluptatum? Voluptates quisquam ea a autem nisi, neque iure dignissimos omnis ad ratione tempora
+            expedita reiciendis repellendus sit voluptatum animi ipsum architecto quidem temporibus consequatur est amet
+            assumenda itaque nam! Odio dolor eum dignissimos, doloribus aperiam aut dolorum.</p>
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-2 p-0 m-0 ">
+                <img src="img/pic-3.png" class="w-100 rounded-circle" alt="customer">
+              </div>
+              <div class="col-md-5">
+                <h5 class="cust">John Deo</h5>
+                <h6 class="text-muted">happy customer</h6>
+              </div>
+              <div class="col-md-1">
+                <i class="qoute fa-solid fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <h2 class="d-flex justify-content-center m-5 header">customer's review</h2> -->
+
+    <div class="container">
+      <div class="row d-flex justify-content-between">
+        <div class="col-md-4 box ">
+          <div class="stars">
+            <br>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <br>
+          <p class="text-muted">Lorem delens aliquam enim deleniti sunt minus, qui provident rem, a voluptatum?
+            Voluptates quisquam ea a autem nisi, neque iure dignissimos omnis ad ratione tempora expedita reiciendis
+            repellendus sit voluptatum animi ipsum architecto quidem temporibus consequatur est amet assumenda itaque
+            nam! Odio dolor eum dignissimos, doloribus aperiam aut dolorum.</p>
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-2 p-0 m-0 ">
+                <img src="img/pic-1.png" class="w-100 rounded-circle" alt="customer">
+              </div>
+              <div class="col-md-5">
+                <h5 class="cust">John Deo</h5>
+                <h6 class="text-muted">happy customer</h6>
+              </div>
+              <div class="col-md-1">
+                <i class="qoute fa-solid fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 box ">
+          <br>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <br>
+          <p class="text-muted">Lorem deleniti quae sed quia ut,eius aliquam enim deleniti sunt minus, qui provident
+            rem, a voluptatum? Voluptates quisquam ea a autem nisi, neque iure dignissimos omnis ad ratione tempora
+            expedita reiciendis repellendus sit voluptatum animi ipsum architecto quidem temporibus consequatur est amet
+            assumenda itaque nam! Odio dolor eum dignissimos, doloribus aperiam aut dolorum.</p>
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-2 p-0 m-0 ">
+                <img src="img/pic-2.png" class="w-100 rounded-circle" alt="customer">
+              </div>
+              <div class="col-md-5">
+                <h5 class="cust">John Deo</h5>
+                <h6 class="text-muted">happy customer</h6>
+              </div>
+              <div class="col-md-1">
+                <i class="qoute fa-solid fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 box ">
+          <br>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <br>
+          <p class="text-muted">Lorem deleniti quae sed quia ut,eius aliquam enim deleniti sunt minus, qui provident
+            rem, a voluptatum? Voluptates quisquam ea a autem nisi, neque iure dignissimos omnis ad ratione tempora
+            expedita reiciendis repellendus sit voluptatum animi ipsum architecto quidem temporibus consequatur est amet
+            assumenda itaque nam! Odio dolor eum dignissimos, doloribus aperiam aut dolorum.</p>
+          <div class="container">
+            <div class="row ">
+              <div class="col-md-2 p-0 m-0 ">
+                <img src="img/pic-3.png" class="w-100 rounded-circle" alt="customer">
+              </div>
+              <div class="col-md-5">
+                <h5 class="cust">John Deo</h5>
+                <h6 class="text-muted">happy customer</h6>
+              </div>
+              <div class="col-md-1">
+                <i class="qoute fa-solid fa-quote-right"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--                          contact section                   -->
+
+  <section id="contact">
+    <h2 class="d-flex justify-content-center m-5 header">Contact Us</h2>
+    <div class="container">
+      <div class="row d-flex justify-content-between">
+        <div class=" col-md-5 form-box my-5">
+          <form class="m-2 my-4 ">
+            <div class="mb-3">
+              <input type="text" class="form-control" id="name" placeholder="name">
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" id="email" placeholder="email">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" id="number" placeholder="number">
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" id="message" rows="4" placeholder="message"></textarea>
+            </div>
+            <button type="submit" class="bg-black rounded-4 border-0 px-4 py-1 text-light">Send Message</button>
+          </form>
+
+        </div>
+        <div class="col-md-5">
+          <img src="img/contact.png" class="w-100">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!--                         footer section                   -->
+
+  <footer>
+    <div class="container-fluid">
+      <div class="row  p-5 w-100 d-flex justify-content-between">
+        <div class="col-md-3">
+          <h4>Quick Links</h4>
+
+          <a href="#home">Home</a><br>
+          <a href="#about">About</a><br>
+          <a href="#products">Products</a><br>
+          <a href="#reveiw">Review</a><br>
+          <a href="#contact">Contact</a><br>
+        </div>
+        <div class="col-md-3">
+          <h4>Extra links</h4>
+
+          <a href="https://www.linkedin.com/in/amiirahesham/" target="_blank">My Account</a><br>
+          <a href="#about">My Order</a><br>
+          <a href="#products">My Favourit</a><br>
+
+
+        </div>
+        <div class="col-md-3">
+          <h4>Locations</h4>
+
+          <a href="#">Egypt</a><br>
+          <a href="#">Algeria</a><br>
+          <a href="#">Qatar</a><br>
+          <a href="#">UAE</a><br>
+
+        </div>
+        <div class="col-md-3">
+          <h4>Contact Info</h4>
+
+          <a href="#">Flowerstore@gmail.com</a><br>
+          <a href="#about">+20 111 1111 111</a><br>
+          <a href="https://github.com/Amiirahesham">Flower Store</a><br>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/all.min.js"></script>
+  <script src="js/sign.js"></script>
+  <div class="footer">
+    &copy; 2025 <span>Flower Store</span> All Right Reserved
+  </div>
+
+</body>
+
+</html>
